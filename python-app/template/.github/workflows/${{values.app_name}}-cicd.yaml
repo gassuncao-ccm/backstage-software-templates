@@ -77,9 +77,9 @@ jobs:
           argocd app get ${{values.app_name}} || argocd app create ${{values.app_name}} \
             --repo $repo \
             --path charts/app \
-            --dest-namespace ${{ env.namespace }} \
+            --dest-namespace ${{ values.app_name }} \
             --dest-server https://kubernetes.default.svc \
-            --values values-${{ inputs.environment }}.yaml \
+            --values values-${{ values.app_env }}.yaml \
             --revision master \
             --sync-policy auto \
             --sync-option CreateNamespace=true
